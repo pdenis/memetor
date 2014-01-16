@@ -2,7 +2,7 @@
 
 namespace Snide\Memetor\Image\Extractor;
 
-use Snide\Memetor\Image\Extractor;
+use Snide\Memetor\Extractor;
 
 /**
  * Class ItpcExtractor
@@ -20,16 +20,14 @@ class IptcExtractor extends Extractor
     {
         if(!$this->isInitialized) {
             $size = getimagesize($this->getPath(), $info);
-            if(!isset($info['APP13']))
-                return false;
-
-            $data = iptcparse($info['APP13']);
-            $this->isInitialized = true;
-            $this->metadata = array_merge(
-                array('iptc' => $data),
-                parent::getMetadata()
-            );
-
+            if(isset($info['APP13'])) {
+                $data = iptcparse($info['APP13']);
+                $this->isInitialized = true;
+                $this->metadata = array_merge(
+                    array('iptc_data' => $data),
+                    parent::getMetadata()
+                );
+            }
         }
 
         return $this->metadata;

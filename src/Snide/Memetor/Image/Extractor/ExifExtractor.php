@@ -2,7 +2,7 @@
 
 namespace Snide\Memetor\Image\Extractor;
 
-use Snide\Memetor\Image\Extractor;
+use Snide\Memetor\Extractor;
 
 /**
  * Class ExifExtractor
@@ -18,10 +18,10 @@ class ExifExtractor extends Extractor
      */
     public function getMetadata()
     {
-        if(!$this->isInitialized) {
+        if (!$this->isInitialized) {
             $data = exif_read_data($this->getPath());
             $this->metadata = array_merge(
-                array('exif_data' => $data),
+                $this->parseData($data),
                 parent::getMetadata()
             );
 
@@ -29,5 +29,22 @@ class ExifExtractor extends Extractor
         }
 
         return $this->metadata;
+    }
+
+    /**
+     * Parse metadata and create a clean array
+     *
+     * @param $metadata
+     * @return array
+     */
+    protected function parseData($metadata)
+    {
+        $parsedData = array();
+        if (isset($metadata['COMPUTED'])) {
+            $parsedData = array_merge($metadata['COMPUTED'], $parsedData);
+            unset($metadata['COMPUTED']);
+        }
+
+        return array_merge($parsedData, $metadata);
     }
 }
