@@ -7,7 +7,7 @@ use Snide\Memetor\Extractor;
 /**
  * Class ItpcExtractor
  *
- * @author Pascal DENIS <pascal.denis@businessdecision.com>
+ * @author Pascal DENIS <pascal.denis.75@gmail.com>
  */
 class IptcExtractor extends Extractor
 {
@@ -18,9 +18,9 @@ class IptcExtractor extends Extractor
      */
     public function getMetadata()
     {
-        if(!$this->isInitialized) {
-            $size = getimagesize($this->getPath(), $info);
-            if(isset($info['APP13'])) {
+        if (!$this->isInitialized) {
+            getimagesize($this->getPath(), $info);
+            if (isset($info['APP13'])) {
                 $data = iptcparse($info['APP13']);
                 $this->isInitialized = true;
                 $this->metadata = array_merge(

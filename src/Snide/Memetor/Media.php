@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Snide\Memetor;
-
 
 /**
  * Class Media
  *
- * @author Pascal DENIS <pascal.denis@businessdecision.com>
+ * @author Pascal DENIS <pascal.denis.75@gmail.com>
  */
 abstract class Media
 {
@@ -32,7 +30,7 @@ abstract class Media
      */
     public function __construct($path = '')
     {
-        if($path) {
+        if ($path) {
             $this->setPath($path);
         }
     }
@@ -55,7 +53,7 @@ abstract class Media
      */
     public function setPath($path)
     {
-        if(!file_exists($path)) {
+        if (!file_exists($path)) {
             throw new \UnexpectedValueException(sprintf('Media path %s doest not exist', $path));
         }
         $this->path = $path;
@@ -68,7 +66,7 @@ abstract class Media
      */
     public function getMetadata()
     {
-        if(!is_array($this->metadata)) {
+        if (!is_array($this->metadata)) {
             $this->metadata = array();
         }
         return $this->metadata;
@@ -94,7 +92,7 @@ abstract class Media
      */
     public function get($key)
     {
-        if(!$this->has($key)) {
+        if (!$this->has($key)) {
             throw new \Exception(
                 sprintf(
                     'Key %s does not exist for image %s',

@@ -7,7 +7,7 @@ use Snide\Memetor\Extractor;
 /**
  * Class ExifExtractor
  *
- * @author Pascal DENIS <pascal.denis@businessdecision.com>
+ * @author Pascal DENIS <pascal.denis.75@gmail.com>
  */
 class ExifExtractor extends Extractor
 {

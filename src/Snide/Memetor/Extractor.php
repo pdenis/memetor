@@ -7,7 +7,7 @@ use Snide\Memetor\Media;
 /**
  * Class Extractor
  *
- * @author Pascal DENIS <pascal.denis@businessdecision.com>
+ * @author Pascal DENIS <pascal.denis.75@gmail.com>
  */
 abstract class Extractor extends Media
 {
