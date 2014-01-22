@@ -45,7 +45,6 @@ class ExifExtractorTest extends \PHPUnit_Framework_TestCase
         "ByteOrderMotorola":0,
         "ApertureFNumber":"f\/2.8",
         "FileName":"image_test.jpg",
-        "FileDateTime":1389904228,
         "FileSize":712398,
         "FileType":2,
         "MimeType":"image\/jpeg",
@@ -86,7 +85,9 @@ class ExifExtractorTest extends \PHPUnit_Framework_TestCase
     public function testMetadata()
     {
         $metadata = $this->object->getMetadata();
+        unset($metadata['FileDateTime']);
         $this->assertEquals($this->data, $metadata);
+
         $this->assertEquals('image_test.jpg', $this->object->get('FileName'));
     }
 
