@@ -1,15 +1,13 @@
 <?php
 
-
 namespace Snide\Memetor\Image\Extractor;
 
 use Snide\Memetor\Extractor;
 
-
 /**
  * Class XmpExtractor
  *
- * @author Pascal DENIS <pascal.denis@businessdecision.com>
+ * @author Pascal DENIS <pascal.denis.75@gmail.com>
  */
 class XmpExtractor extends Extractor
 {
@@ -42,7 +40,7 @@ class XmpExtractor extends Extractor
             $data = $this->parseData($this->readData());
             $this->isInitialized = true;
 
-            if(is_array($data)) {
+            if (is_array($data)) {
                 $this->metadata = array_merge(
                     $data,
                     parent::getMetadata()
@@ -80,7 +78,7 @@ class XmpExtractor extends Extractor
 
     /**
      * Parse XMP data
-     * @param string $data XMP data
+     * @param $xmlData
      * @return array
      */
     protected function parseData($xmlData)
@@ -89,10 +87,10 @@ class XmpExtractor extends Extractor
         foreach ($this->regexps as $k => $v) {
             $r = null;
             preg_match ($v, $xmlData, $r);
-            if(isset($r[1])) {
+            if (isset($r[1])) {
                 $data[$k] = $r[1];
             }
-        ///    if(in_array($k["name"], array("f number", "focal lenght"))) eval("\$xmp_item = ".$xmp_item.";");
+        ///    if (in_array($k["name"], array("f number", "focal lenght"))) eval("\$xmp_item = ".$xmp_item.";");
          //  $xmp_parsed[$k["name"]] = str_replace("&#xA;", "\n", $xmp_item);
         }
         return $data;

@@ -23,7 +23,7 @@ class IptcExtractor extends Extractor
             if (isset($info['APP13'])) {
                 $data = iptcparse($info['APP13']);
                 $this->isInitialized = true;
-                if(is_array($data)) {
+                if (is_array($data)) {
                     $this->metadata = array_merge(
                         $data,
                         parent::getMetadata()
