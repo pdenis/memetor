@@ -37,6 +37,5 @@ class IptcExtractorTest extends \PHPUnit_Framework_TestCase
     public function testMetadata()
     {
         $metadata = $this->object->getMetadata();
-        $this->assertArrayHasKey('iptc_data', $metadata);
     }
 }
